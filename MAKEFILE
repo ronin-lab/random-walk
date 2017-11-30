@@ -25,7 +25,6 @@ all: src skywalker
 .SUFFIXES: .c .o
 
 
-
 src:
  cd $(SRC_RANDOM_WALK); $(CC) $(CFLAGS) -o R2D2.o -c R2D2.c; $(CC) $(CFLAGS) -o C3P0.o -c C3P0.c
 
@@ -35,6 +34,7 @@ skywalker:
 
  @echo; if [ ! -d $(RANDOM_WALK)/bin_$(COMP) ]; then mkdir $(RANDOM_WALK)/bin_$(COMP); fi
  @echo; mv $(SRC_RANDOM_WALK)/SKYWALKER_$(COMP) $(RANDOM_WALK)/bin_$(COMP)/.
+
 
 
 .PHONY: all clean debclean veryclean verydebclean
@@ -49,27 +49,10 @@ debclean:
 
 veryclean:
 	cd $(SRC_RANDOM_WALK); rm -f *.o
-	#cd $(SRC_MXAN); rm -f *.o
+	#cd $(SRC_); rm -f *.o
 	cd $(RANDOM_WALK)/bin_$(COMP); rm -f SKYWALKER_$(COMP)
 
 verydebclean:
 	cd $(SRC_RANDOM_WALK); rm -f *.o
-	#cd $(SRC_MXAN); rm -f *.o
+	#cd $(SRC_); rm -f *.o
 	cd $(RANDOM_WALK)/bin_$(COMP); rm -f SKYWALKER_$(COMP)
-
-
-
-#target "helloworld" richiede $(OBJECTS) per compilare
-#helloworld: $(OBJECTS)
-#        $(CC) -o $@ $<
-
-##target "helloworld.o" richiede $(SRCS) per creare i file oggetto
-#helloworld.o: $(SRCS)
-#        $(CC) -c -o $@ $<
-
-#target "clean" pulisce i file oggetto e il binario nella directory corrente
-#clean:
-#        rm -f helloworld helloworld.o
-
-#target "clean" non è un file!
-#.PHONY: clean

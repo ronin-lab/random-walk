@@ -13,7 +13,7 @@
 
 //double myrand(void);	decidere se usare un LCG o se prendere il numero random da /dev/urandom
 
-double AT-AT(); //un walker come gli AT-AT
+double AT-AT(); //un "walker" come gli AT-AT
 
 //void istogramma();
 
@@ -21,11 +21,34 @@ double AT-AT(); //un walker come gli AT-AT
 
 int main() {
 
-	srand(time(NULL));
+	unsigned int seed;
 
 	FILE *fp;
 
 	fp = fopen("walk.dat", "w");
+
+	
+  	FILE *devran = fopen("/dev/urandom", "r");
+
+	fread(&seed, sizeof(unsigned int), 1, devran);
+
+	fclose(devran);
+
+	
+	srand(seed);	
+
+
+
+	int *pos, *avg, *var;	//dichiarazione array per posizione, media e varianza
+
+
+	pos = (int *)calloc(Nsteps+1, sizeof(int));
+
+	avg = (int *)calloc(Nsteps+1, sizeof(int));
+
+	var = (int *)calloc(Nsteps+1, sizeof(int));
+
+
 
 
 }
@@ -37,7 +60,7 @@ double myrand(void){
 
 }
 
-double AT-AT(par data, double *pos, double *var){
+double AT-AT(par data, double *pos, double *avg, double *var){
 
 
 	int i;
