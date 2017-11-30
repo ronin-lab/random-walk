@@ -1,1 +1,75 @@
- 
+
+SHELL=/bin/sh #Shell da utilizzare per l'esecuzione dei comandi
+
+### Path to sources                 ###
+RANDOM_WALK  = $(PWD)
+SRC_RANDOM_WALK   = $(RANDOM_WALK)/src
+UPDIR      = ../
+
+
+### Compiler
+COMP       = gnu
+
+### Inclusione del file contenente le regole di compilazione
+include COMP.$(COMP)
+
+
+
+OBJECTS=R2D2.o C3P0.o #File oggetto
+
+SRCS=R2D2.c C3P0.c #File sorgente
+
+### Rules                           ###
+all: src skywalker
+
+.SUFFIXES: .c .o
+
+
+
+src:
+ cd $(SRC_RANDOM_WALK); $(CC) $(CFLAGS) -o R2D2.o -c R2D2.c; $(CC) $(CFLAGS) -o C3P0.o -c C3P0.c
+
+skywalker:
+ cd $(SRC_RANDOM_WALK); $(CC) -I$(UPDIR) $(CFLAGS) SKYWALKER.c $(OBJECTS) -o SKYWALKER_$(COMP)
+
+
+ @echo; if [ ! -d $(RANDOM_WALK)/bin_$(COMP) ]; then mkdir $(RANDOM_WALK)/bin_$(COMP); fi
+ @echo; mv $(SRC_RANDOM_WALK)/SKYWALKER_$(COMP) $(RANDOM_WALK)/bin_$(COMP)/.
+
+
+.PHONY: all clean debclean veryclean verydebclean
+
+clean:
+	cd $(SRC_RANDOM_WALK); rm -f *.o
+	cd $(RANDOM_WALK)/bin_$(COMP); rm -f SKYWALKER_$(COMP)
+
+debclean:
+	cd $(SRC_RANDOM_WALK); rm -f *.o
+	cd $(RANDOM_WALK)/bin_$(COMP); rm -f SKYWALKER_$(COMP)
+
+veryclean:
+	cd $(SRC_RANDOM_WALK); rm -f *.o
+	#cd $(SRC_MXAN); rm -f *.o
+	cd $(RANDOM_WALK)/bin_$(COMP); rm -f SKYWALKER_$(COMP)
+
+verydebclean:
+	cd $(SRC_RANDOM_WALK); rm -f *.o
+	#cd $(SRC_MXAN); rm -f *.o
+	cd $(RANDOM_WALK)/bin_$(COMP); rm -f SKYWALKER_$(COMP)
+
+
+
+#target "helloworld" richiede $(OBJECTS) per compilare
+#helloworld: $(OBJECTS)
+#        $(CC) -o $@ $<
+
+##target "helloworld.o" richiede $(SRCS) per creare i file oggetto
+#helloworld.o: $(SRCS)
+#        $(CC) -c -o $@ $<
+
+#target "clean" pulisce i file oggetto e il binario nella directory corrente
+#clean:
+#        rm -f helloworld helloworld.o
+
+#target "clean" non è un file!
+#.PHONY: clean
