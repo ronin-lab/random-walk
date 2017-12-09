@@ -31,4 +31,4 @@ void empty(double *, int);	//azzera gli array
 
 #endif
 
-/*END R2D2.h*/
+/*END GENERIC.h*/

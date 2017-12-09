@@ -1,14 +1,17 @@
-##############################################################################################
-###                                   COMP.gnu                                             ###
-##############################################################################################
+###############################################################################
+###  COmandi per compilatore GNU                                            ###                     
+###                                                                         ###
+###                                                                         ###
+###############################################################################
 
-##  Compiler                                   ##
-CC         = gcc
+## Compiler ##
+CC = gcc
 
-##  Optimization flags                         ##
+## Base flags ##
 CFLAGS = -Wall -lm
 
-##-ftree-vectorize -O3 -w -Wextra -Wall -mtune=native -lm
+## Optimization flags ##
+## CFLAGS = -ftree-vectorize -O3 -w -Wextra -Wall -mtune=native -lm
 
-##  Debug flags                                ##
-#FCFLAGS = -g -O0 -w
+## Debug flags ##
+## CFLAGS = -g -O0 -w
