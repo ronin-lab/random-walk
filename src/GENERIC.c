@@ -21,3 +21,18 @@ void syntax(int argc, char* argv[]){
 
 
 }
+
+
+void check_array(int *data_array){
+
+if(data_array == NULL){
+
+
+	fprintf(stderr, "Errore allocazione dinamica di !\n")
+
+	exit(EXIT_FAILURE);
+
+
+}
+
+}
